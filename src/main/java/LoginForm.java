@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import org.mindrot.jbcrypt.BCrypt;
 
 
+/**
+ * Clasa LoginForm reprezinta fereastra de autentificre a utilizatorului.
+ */
 public class LoginForm extends JFrame {
 
     private User currentUser;
@@ -14,16 +17,27 @@ public class LoginForm extends JFrame {
     private JTextField usernameField;
     private JPasswordField passwordField;
 
+    /**
+     * Constructor pentru clasa LoginForm.
+     *
+     * @param user Utilizatorul curent.
+     */
     public LoginForm(User user) {
         this.currentUser = user;
         initialize();
     }
 
+    /**
+     * Constructor pentru clasa LoginForm.
+     */
     public LoginForm() {
         super("Autentificare");
         initialize();
     }
 
+    /**
+     * Initializeaza interfata utilizatorului pentru fereastra de autentificare.
+     */
     private void initialize() {
         usernameField = new JTextField(20);
         passwordField = new JPasswordField(20);
@@ -70,12 +84,5 @@ public class LoginForm extends JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-
-    public static void main(String[] args) {
-        UserDao userDao = new UserDao();
-        User defaultUser = userDao.getUserByUsername("defaultUser");
-        SwingUtilities.invokeLater(() -> new LoginForm(defaultUser));
     }
 }

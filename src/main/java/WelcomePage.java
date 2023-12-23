@@ -3,8 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clasa WelcomePage reprezinta fereastra de bun venit cu optinile de inregistrare si autentificare.
+ */
 public class WelcomePage extends JFrame {
 
+    /**
+     * Constructorul clasei WelcomePage.
+     */
     public WelcomePage() {
         super("Bine ati venit!");
 
@@ -56,9 +62,5 @@ public class WelcomePage extends JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new WelcomePage();
     }
 }

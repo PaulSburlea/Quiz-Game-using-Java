@@ -3,12 +3,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clasa RegistrationForm reprezinta o fereastra de inregistrare a utilizatorului in sistem.
+ */
 public class RegistrationForm extends JFrame {
 
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JTextField emailFied;
 
+    /**
+     * Constructorul clasei RegistrationForm.
+     */
     public RegistrationForm() {
         super("Inregistrare");
 
@@ -56,9 +62,5 @@ public class RegistrationForm extends JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new RegistrationForm());
     }
 }

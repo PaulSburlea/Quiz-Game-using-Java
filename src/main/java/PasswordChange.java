@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * Clasa PasswordChange reprezinta o fereastra de dialog pentru schimbarea parolei utilizatorului curent.
+ */
 public class PasswordChange extends JDialog {
 
     private JPasswordField currentPasswordField;
@@ -15,6 +18,12 @@ public class PasswordChange extends JDialog {
     private JPasswordField confirmNewPasswordField;
     private User currentUser;
 
+    /**
+     * Constructorul clasei PasswordChange.
+     *
+     * @param parent Fereastra principala parinte.
+     * @param currentUser Utilizatorul curent pentru schimbarea parolei.
+     */
     public PasswordChange(JFrame parent, User currentUser) {
         super(parent, "Schimba parola", true);
         this.currentUser = currentUser;
@@ -51,6 +60,9 @@ public class PasswordChange extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Metoda care verifica si schimba parola utilizatorului curent.
+     */
     private void changePassword() {
         String currentPassword = new String(currentPasswordField.getPassword());
         String newPassword = new String(newPasswordField.getPassword());
@@ -69,6 +81,11 @@ public class PasswordChange extends JDialog {
         }
     }
 
+    /**
+     * metoda care actualizeaza parola utilizatorului in baza de date.
+     *
+     * @param newPassword Parola noua.
+     */
     private void updatePassword(String newPassword) {
     try(Connection connection = Database.getConnection()) {
         String query = "UPDATE user SET password = ? WHERE id = ?";

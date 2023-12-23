@@ -2,11 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
+/**
+ * Clasa UserMenu reprezinta fereastra meniului pentru utilizator.
+ */
 public class UserMenu extends JFrame {
 
-    private User currentUser;
+    private final User currentUser;
 
+    /**
+     * Constructorul clasei.
+     *
+     * @param user Utilizatorul curent pentru meniu.
+     */
     public UserMenu(User user) {
         super("Meniu Utilizator");
 
@@ -20,23 +29,22 @@ public class UserMenu extends JFrame {
         startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
-                JOptionPane.showMessageDialog(UserMenu.this, "Jocul a inceput!");
+                List<Question> randomQuestions = QuestionManager.getRandomQuestions(10);
+                new GameFrame(randomQuestions, currentUser);
             }
         });
 
         viewRankingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
-                JOptionPane.showMessageDialog(UserMenu.this, "Vezi clasament...");
+                List<User> ranking = UserDao.getRanking();
+                new RankingFrame(ranking);
             }
         });
 
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO
                 if (currentUser != null) {
                     new PasswordChange(UserMenu.this, currentUser);
                 } else {
