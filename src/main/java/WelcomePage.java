@@ -41,24 +41,28 @@ public class WelcomePage extends JFrame {
             }
         });
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-        buttonPanel.add(titleLabel);
-        buttonPanel.add(registerButton);
-        buttonPanel.add(loginButton);
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între butoane
+        gbc.fill = GridBagConstraints.BOTH; // Asigurăm că butoanele se extind pe ambele axe
 
-        JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        centerPanel.add(buttonPanel);
+        // Adăugăm butoanele în panou
+        buttonPanel.add(titleLabel, gbc);
+        gbc.gridy++;
+        buttonPanel.add(registerButton, gbc);
+        gbc.gridy++;
+        buttonPanel.add(loginButton, gbc);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
         add(mainPanel, BorderLayout.CENTER);
 
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
         setLocationRelativeTo(null);
         setVisible(true);

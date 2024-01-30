@@ -61,19 +61,36 @@ public class UserMenu extends JFrame {
             }
         });
 
-        JPanel panel = new JPanel(new GridLayout(4, 1));
-        panel.add(startGameButton);
-        panel.add(viewRankingButton);
-        panel.add(changePasswordButton);
-        panel.add(logoutButton);
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între butoane
+        gbc.fill = GridBagConstraints.BOTH; // Asigurăm că butoanele se extind pe ambele axe
 
-        setLayout(new BorderLayout());
+        // Dimensiunea preferată a butoanelor
+        Dimension buttonSize = new Dimension(200, 50);
+
+        // Adăugăm butoanele în panou
+        addButton(startGameButton, panel, gbc, buttonSize);
+        gbc.gridy++;
+        addButton(viewRankingButton, panel, gbc, buttonSize);
+        gbc.gridy++;
+        addButton(changePasswordButton, panel, gbc, buttonSize);
+        gbc.gridy++;
+        addButton(logoutButton, panel, gbc, buttonSize);
+
+        // Centrăm panoul în cadrul ferestrei
         add(panel, BorderLayout.CENTER);
 
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void addButton(JButton button, JPanel panel, GridBagConstraints gbc, Dimension size) {
+        button.setPreferredSize(size); // Setăm dimensiunea preferată a butonului
+        panel.add(button, gbc);
     }
 }

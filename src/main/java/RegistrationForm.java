@@ -45,14 +45,28 @@ public class RegistrationForm extends JFrame {
             }
         });
 
-        JPanel panel = new JPanel(new GridLayout(4, 2));
-        panel.add(new JLabel("Username:"));
-        panel.add(usernameField);
-        panel.add(new JLabel("Parola:"));
-        panel.add(passwordField);
-        panel.add(new JLabel("Email"));
-        panel.add(emailFied);
-        panel.add(registerButton);
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între elemente
+        gbc.anchor = GridBagConstraints.WEST; // Aliniere la stânga
+
+        panel.add(new JLabel("Username:"), gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Parola:"), gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Email"), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        panel.add(usernameField, gbc);
+        gbc.gridy++;
+        panel.add(passwordField, gbc);
+        gbc.gridy++;
+        panel.add(emailFied, gbc);
+        gbc.gridy++;
+        panel.add(registerButton, gbc);
 
         setLayout(new FlowLayout());
         setSize(700, 600);

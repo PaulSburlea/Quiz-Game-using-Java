@@ -69,12 +69,22 @@ public class LoginForm extends JFrame {
             }
         });
 
-        JPanel panel = new JPanel(new GridLayout(3, 2));
-        panel.add(new JLabel("Username"));
-        panel.add(usernameField);
-        panel.add(new JLabel("Parola"));
-        panel.add(passwordField);
-        panel.add(loginButton);
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.anchor = GridBagConstraints.WEST;
+
+        panel.add(new JLabel("Username:"), gbc);
+        gbc.gridy++;
+        panel.add(usernameField, gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Parola:"), gbc);
+        gbc.gridy++;
+        panel.add(passwordField, gbc);
+        gbc.gridy++;
+        panel.add(loginButton, gbc);
 
         setLayout(new FlowLayout());
         setSize(700, 600);

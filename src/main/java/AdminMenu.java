@@ -115,22 +115,44 @@ public class AdminMenu extends JFrame {
             }
         });
 
-        JPanel panel = new JPanel(new GridLayout(5, 1));
-        panel.add(addQuestionButton);
-        panel.add(deleteQuestionButton);
-        panel.add(modifyRankingButton);
-        panel.add(changePasswordButton);
-        panel.add(logoutButton);
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între butoane
+        gbc.fill = GridBagConstraints.BOTH; // Asigurăm că butoanele se extind pe ambele axe
 
-        setLayout(new BorderLayout());
+
+
+// Dimensiunea preferată a butoanelor
+        Dimension buttonSize = new Dimension(200, 50);
+
+// Adăugăm butoanele în panou
+        addButton(addQuestionButton, panel, gbc, buttonSize);
+        gbc.gridy++;
+        addButton(deleteQuestionButton, panel, gbc, buttonSize);
+        gbc.gridy++;
+        addButton(modifyRankingButton, panel, gbc, buttonSize);
+        gbc.gridy++;
+        addButton(changePasswordButton, panel, gbc, buttonSize);
+        gbc.gridy++;
+        addButton(logoutButton, panel, gbc, buttonSize);
+
+// Centrăm panoul în cadrul ferestrei
         add(panel, BorderLayout.CENTER);
 
+// Restul codului rămâne neschimbat
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
+    private void addButton(JButton button, JPanel panel, GridBagConstraints gbc, Dimension size) {
+        button.setPreferredSize(size); // Setăm dimensiunea preferată a butonului
+        panel.add(button, gbc);
+    }
+
 
     /**
      * Adauga o intrebare in baza de date.

@@ -28,18 +28,28 @@ public class PasswordChange extends JDialog {
         super(parent, "Schimba parola", true);
         this.currentUser = currentUser;
 
-        JPanel panel = new JPanel(new GridLayout(3, 2));
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.anchor = GridBagConstraints.WEST;
 
         currentPasswordField = new JPasswordField(20);
         newPasswordField = new JPasswordField(20);
         confirmNewPasswordField = new JPasswordField(20);
 
-        panel.add(new JLabel("Parola curenta:"));
-        panel.add(currentPasswordField);
-        panel.add(new JLabel("Parola noua:"));
-        panel.add(newPasswordField);
-        panel.add(new JLabel("Confirma parola noua:"));
-        panel.add((confirmNewPasswordField));
+        panel.add(new JLabel("Parola curenta:"), gbc);
+        gbc.gridy++;
+        panel.add(currentPasswordField, gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Parola noua:"), gbc);
+        gbc.gridy++;
+        panel.add(newPasswordField, gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Confirma parola noua:"), gbc);
+        gbc.gridy++;
+        panel.add(confirmNewPasswordField, gbc);
 
         JButton changePasswordButton = new JButton("Schimba parola");
 

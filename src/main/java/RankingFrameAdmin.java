@@ -74,7 +74,7 @@ public class RankingFrameAdmin extends JFrame {
                         loadRanking(UserDao.getRanking());
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Utilizatorul nu a fost găsit în baza de date!");
+                    JOptionPane.showMessageDialog(this, "Utilizatorul nu a fost gasit în baza de date!");
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "ID utilizator invalid!");
