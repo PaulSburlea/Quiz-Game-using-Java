@@ -3,14 +3,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Clasa Database furnizeaza o conexiune la o baza de date MySQL.
+ * The Database class provides a connection to a MySQL database.
  */
 public class Database {
 
     /**
-     * Obtine o conexiune la baza de date.
-     * @return O conexiune la baza de date MySQL.
-     * @throws SQLException Exceptie aruncata in cazul unei erori la obtinerea conexiunii.
+     * Gets a connection to the database.
+     * @return A connection to the MySQL database.
+     * @throws SQLException Exception discarded in case of an error when getting the connection.
      */
     public static Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/quiz";

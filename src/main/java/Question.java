@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clasa Question reprezinta o intrebare dintr-un joc de tip quiz.
+ * Question class is a question from a quiz game.
  */
 public class Question {
 
@@ -16,15 +16,15 @@ public class Question {
 
 
     /**
-     * Constructorul clasei Question.
+     * Question class constructor.
      *
-     * @param questionId ID-ul intrebarii.
-     * @param questionText Texul intrebarii.
-     * @param option1 Optiunea 1.
-     * @param option2 Optiunea 2.
-     * @param option3 Optiunea 3.
-     * @param option4 Optiunea 4.
-     * @param correctOption Varianta corecta (1-4).
+     * @param questionId Question ID.
+     * @param questionText Question text.
+     * @param option1 Option 1.
+     * @param option2 Option 2.
+     * @param option3 Option 3.
+     * @param option4 Option 4.
+     * @param correctOption The correct version (1-4).
      */
     public Question(int questionId, String questionText, String option1, String option2, String option3, String option4, int correctOption) {
         this.questionId = questionId;
@@ -93,9 +93,9 @@ public class Question {
     }
 
     /**
-     * Obtine o lista de optiuni.
+     * Get a list of options.
      *
-     * @return Lista de optiuni.
+     * return List of options.
      */
     public List<String> getOptions() {
         List<String> options = new ArrayList<>();

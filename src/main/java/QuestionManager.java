@@ -7,15 +7,15 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Clasa QuestionManager ofera functionalitati pentru gestionarea intrebarilor din bza de date.
+ * The QuestionManager class provides functionality for managing questions in the database.
  */
 public class QuestionManager {
 
     /**
-     * Returneaza o lista de intrebari aleatorii din baza de date.
+     * Returns a list of random questions from the database.
      *
-     * @param numberOfQuestions Numarul de intrebari dorite.
-     * @return Lista de intrebari aleatorii.
+     * @param numberOfQuestions Number of questions you want.
+     * @return List of random questions.
      */
     public static List<Question> getRandomQuestions(int numberOfQuestions) {
         List<Question> questions = new ArrayList<>();

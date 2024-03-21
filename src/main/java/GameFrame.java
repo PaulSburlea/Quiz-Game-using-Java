@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.TreeMap;
 
 /**
- * Clasa GameFrame reprezinta fereastra jocului de tip quiz.
+ * The GameFrame class is the window of the quiz game.
  */
 public class GameFrame  extends JFrame {
 
-    private User currentUser;
+    private final User currentUser;
 
-    private List<Question> questions;
+    private final List<Question> questions;
     private int currentQuestionIndex;
     private int score;
 
@@ -27,10 +27,10 @@ public class GameFrame  extends JFrame {
     private JLabel timerLabel;
 
     /**
-     * Constructor pentru clasa GameFrame
+     * Constructor for GameFrame class
      *
-     * @param questions Lista cu intrebari pentru joc.
-     * @param currentUser Utilizatorul curent care participa la joc.
+     * @param questions List of questions for the game.
+     * @param currentUser Current user participating in the game.
      */
     public GameFrame(List<Question> questions, User currentUser) {
         super("Game");
@@ -52,7 +52,7 @@ public class GameFrame  extends JFrame {
     }
 
     /**
-     * Initializeaza interfata utlizatorului pentru fereastra jocului.
+     * Initialize the user interface for the game window.
      */
     private void setupUI() {
         setLayout(new BorderLayout());
@@ -60,7 +60,7 @@ public class GameFrame  extends JFrame {
         questionLabel = new JLabel();
         add(questionLabel, BorderLayout.NORTH);
 
-        timerLabel = new JLabel("Timp ramas: " + timeRemaining);
+        timerLabel = new JLabel("Time left: " + timeRemaining);
         add(timerLabel, BorderLayout.WEST);
 
         answerGroup = new ButtonGroup();
@@ -99,14 +99,14 @@ public class GameFrame  extends JFrame {
 
 
     /**
-     * Initializeaza cronometrul pentru joc.
+     * Initialize the timer for the game.
      */
     private void setupTimer() {
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timeRemaining--;
-                timerLabel.setText("Timp ramas: " + timeRemaining);
+                timerLabel.setText("Time left: " + timeRemaining);
                 if (timeRemaining == 0) {
                     checkAnswer();
                     currentQuestionIndex++;
@@ -123,15 +123,15 @@ public class GameFrame  extends JFrame {
     }
 
     /**
-     * Reseteaza cronomentrul pentru urmatoarea intrebare.
+     * Reset the timer for the next question.
      */
     private void resetTimer() {
         timeRemaining = 15;
-        timerLabel.setText("Timp ramas: " + timeRemaining);
+        timerLabel.setText("Time left: " + timeRemaining);
     }
 
     /**
-     * Afiseaza intrebarea curenta si optiunile de raspuns.
+     * Displays the current question and answer options.
      */
     private void displayQuestion() {
         Question currentQuestion = questions.get(currentQuestionIndex);
@@ -145,7 +145,7 @@ public class GameFrame  extends JFrame {
     }
 
     /**
-     * Verifica raspunsul la intrebarea curenta.
+     * Check the answer to the current question.
      */
     private void checkAnswer() {
         Question currentQuestion = questions.get(currentQuestionIndex);
@@ -156,7 +156,7 @@ public class GameFrame  extends JFrame {
     }
 
     /**
-     * Finalizeaza jocul, opreste cronometrul si afiseaza scorul.
+     * Finish the game, stop the timer and display the score.
      */
     private void finishGame() {
         timer.stop();
@@ -166,12 +166,12 @@ public class GameFrame  extends JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(this, "Jocul s-a incheiat! Punctajul tau este: " + totalScore);
+        JOptionPane.showMessageDialog(this, "The game is over! Your score is: " + totalScore);
         dispose();
     }
 
     /**
-     * Deselecteaza optiunile de raspuns.
+     * Deselect the answer options.
      */
     private void clearSelectedOptions() {
         answerGroup.clearSelection();

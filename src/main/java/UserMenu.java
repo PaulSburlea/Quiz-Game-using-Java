@@ -5,26 +5,26 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
- * Clasa UserMenu reprezinta fereastra meniului pentru utilizator.
+ * UserMenu class initializes menu window for user.
  */
 public class UserMenu extends JFrame {
 
     private final User currentUser;
 
     /**
-     * Constructorul clasei.
+     * UserMenu constructor
      *
-     * @param user Utilizatorul curent pentru meniu.
+     * @param user Current user for menu.
      */
     public UserMenu(User user) {
-        super("Meniu Utilizator");
+        super("User Menu");
 
         this.currentUser = user;
 
-        JButton startGameButton = new JButton("Incepe joc");
-        JButton viewRankingButton = new JButton("Vezi clasament");
-        JButton changePasswordButton = new JButton("Schimba parola");
-        JButton logoutButton = new JButton("Deconectare");
+        JButton startGameButton = new JButton("Start Game");
+        JButton viewRankingButton = new JButton("Leaderboard");
+        JButton changePasswordButton = new JButton("Change Password");
+        JButton logoutButton = new JButton("Logout");
 
         startGameButton.addActionListener(new ActionListener() {
             @Override
@@ -65,13 +65,11 @@ public class UserMenu extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între butoane
-        gbc.fill = GridBagConstraints.BOTH; // Asigurăm că butoanele se extind pe ambele axe
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.BOTH;
 
-        // Dimensiunea preferată a butoanelor
         Dimension buttonSize = new Dimension(200, 50);
 
-        // Adăugăm butoanele în panou
         addButton(startGameButton, panel, gbc, buttonSize);
         gbc.gridy++;
         addButton(viewRankingButton, panel, gbc, buttonSize);
@@ -80,7 +78,6 @@ public class UserMenu extends JFrame {
         gbc.gridy++;
         addButton(logoutButton, panel, gbc, buttonSize);
 
-        // Centrăm panoul în cadrul ferestrei
         add(panel, BorderLayout.CENTER);
 
         setSize(700, 600);
@@ -90,7 +87,7 @@ public class UserMenu extends JFrame {
     }
 
     private void addButton(JButton button, JPanel panel, GridBagConstraints gbc, Dimension size) {
-        button.setPreferredSize(size); // Setăm dimensiunea preferată a butonului
+        button.setPreferredSize(size);
         panel.add(button, gbc);
     }
 }

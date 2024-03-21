@@ -11,9 +11,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *  Clasa AdminMenu reprezinta interfata grafica pentru administrator.
- *  Aceasta clasa ofera functionalitati precum adaugarea si stergerea de intrebari,
- *  modificarea clasamentului si schimbarea parolei.
+ * The AdminMenu class represents the graphical interface for the administrator.
+ * This class offers functionalities such as adding and deleting questions,
+ * changing the ranking and changing the password.
  */
 
 public class AdminMenu extends JFrame {
@@ -23,24 +23,24 @@ public class AdminMenu extends JFrame {
     private JTable rankingTable;
 
     /**
-     * @param user Utilizatorul administrator pentru care se deschide meniul.
+     * @param user The admin user for which the menu opens.
      */
     public AdminMenu(User user) {
-        super("Pagina Principala Admin");
+        super("Admin Main Page");
         this.currentUser = user;
 
-        JButton addQuestionButton = new JButton("Adauga intrebare");
-        JButton deleteQuestionButton = new JButton("Sterge intrebare");
-        JButton modifyRankingButton = new JButton("Modifica clasament");
-        JButton changePasswordButton = new JButton("Schimba parola");
-        JButton logoutButton = new JButton("Deconectare");
+        JButton addQuestionButton = new JButton("Add question");
+        JButton deleteQuestionButton = new JButton("Delete question");
+        JButton modifyRankingButton = new JButton("Modify ranking");
+        JButton changePasswordButton = new JButton("Change password");
+        JButton logoutButton = new JButton("Log out");
 
 
         addQuestionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFrame addQuestionFrame = new JFrame("Adauga intrebare");
+                JFrame addQuestionFrame = new JFrame("Add question");
                 JPanel addQuestionPanel = new JPanel(new GridLayout(6, 2));
 
                 JTextField questionText = new JTextField();
@@ -50,20 +50,20 @@ public class AdminMenu extends JFrame {
                 JTextField option4 = new JTextField();
                 JTextField correctOption = new JTextField();
 
-                addQuestionPanel.add(new JLabel("Intrebare:"));
+                addQuestionPanel.add(new JLabel("Question:"));
                 addQuestionPanel.add(questionText);
-                addQuestionPanel.add(new JLabel("Optiune 1:"));
+                addQuestionPanel.add(new JLabel("Option 1:"));
                 addQuestionPanel.add(option1);
-                addQuestionPanel.add(new JLabel("Optiune 2:"));
+                addQuestionPanel.add(new JLabel("Option 2:"));
                 addQuestionPanel.add(option2);
-                addQuestionPanel.add(new JLabel("Optiune 3:"));
+                addQuestionPanel.add(new JLabel("Option 3:"));
                 addQuestionPanel.add(option3);
-                addQuestionPanel.add(new JLabel("Optiune 4:"));
+                addQuestionPanel.add(new JLabel("Option 4:"));
                 addQuestionPanel.add(option4);
-                addQuestionPanel.add(new JLabel("Varianta corecta (1-4):"));
+                addQuestionPanel.add(new JLabel("Correct oprion (1-4):"));
                 addQuestionPanel.add(correctOption);
 
-                int result = JOptionPane.showConfirmDialog(AdminMenu.this, addQuestionPanel, "Adauga intrebare",
+                int result = JOptionPane.showConfirmDialog(AdminMenu.this, addQuestionPanel, "Add question",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
                 if (result == JOptionPane.OK_OPTION) {
@@ -102,7 +102,7 @@ public class AdminMenu extends JFrame {
                 if (currentUser != null) {
                     new PasswordChange(AdminMenu.this, currentUser);
                 } else {
-                    JOptionPane.showMessageDialog(AdminMenu.this, "User invalid!");
+                    JOptionPane.showMessageDialog(AdminMenu.this, "Invalid user!");
                 }
             }
         });
@@ -119,15 +119,13 @@ public class AdminMenu extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între butoane
-        gbc.fill = GridBagConstraints.BOTH; // Asigurăm că butoanele se extind pe ambele axe
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.BOTH;
 
 
 
-// Dimensiunea preferată a butoanelor
         Dimension buttonSize = new Dimension(200, 50);
 
-// Adăugăm butoanele în panou
         addButton(addQuestionButton, panel, gbc, buttonSize);
         gbc.gridy++;
         addButton(deleteQuestionButton, panel, gbc, buttonSize);
@@ -138,10 +136,8 @@ public class AdminMenu extends JFrame {
         gbc.gridy++;
         addButton(logoutButton, panel, gbc, buttonSize);
 
-// Centrăm panoul în cadrul ferestrei
         add(panel, BorderLayout.CENTER);
 
-// Restul codului rămâne neschimbat
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -149,19 +145,19 @@ public class AdminMenu extends JFrame {
 
     }
     private void addButton(JButton button, JPanel panel, GridBagConstraints gbc, Dimension size) {
-        button.setPreferredSize(size); // Setăm dimensiunea preferată a butonului
+        button.setPreferredSize(size);
         panel.add(button, gbc);
     }
 
 
     /**
-     * Adauga o intrebare in baza de date.
-     * @param questionText Intrebarea.
-     * @param option1 Optiunea 1.
-     * @param option2 Optiunea 2.
-     * @param option3 Optiunea 3.
-     * @param option4 Optiunea 4.
-     * @param correctOption Varianta corecta (1-4).
+     * Add a question to the database.
+     * @param questionText The question.
+     * @param option1 Option 1.
+     * @param option2 Option 2.
+     * @param option3 Option 3.
+     * @param option4 Option 4.
+     * @param correctOption The correct variant (1-4).
      */
     private void addQuestion(String questionText, String option1, String option2, String option3, String option4, int correctOption) {
         try {
@@ -178,23 +174,23 @@ public class AdminMenu extends JFrame {
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(AdminMenu.this, "Intrebare adaugata cu succes!");
+                    JOptionPane.showMessageDialog(AdminMenu.this, "Question successfully added!");
                 } else {
-                    JOptionPane.showMessageDialog(AdminMenu.this, "Eroare la adaugarea intrebarii!");
+                    JOptionPane.showMessageDialog(AdminMenu.this, "Error adding the question!");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(AdminMenu.this, "Eroare la conectarea la baza de date!");
+            JOptionPane.showMessageDialog(AdminMenu.this, "Error connecting to the database!");
         }
     }
 
 
     /**
-     * Afiseaza un dialog pentru stergerea unei intrebari.
+     * Displays a dialog for deleting a question.
      */
     private void showDeleteQuestionDialog() {
-        JFrame deleteQuestionFrame = new JFrame("Sterge intrebare");
+        JFrame deleteQuestionFrame = new JFrame("Delete question");
         JPanel deleteQuestionPanel = new JPanel(new BorderLayout());
 
         JTextArea questionListArea = new JTextArea();
@@ -206,12 +202,12 @@ public class AdminMenu extends JFrame {
         JScrollPane scrollPane = new JScrollPane(questionListArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        deleteQuestionPanel.add(new JLabel("Lista intrebarilor:\n"), BorderLayout.NORTH);
+        deleteQuestionPanel.add(new JLabel("List of questions:\n"), BorderLayout.NORTH);
         deleteQuestionPanel.add(scrollPane, BorderLayout.CENTER);
 
         JPanel inputPanel = new JPanel(new BorderLayout());
         JTextField deleteQuestionNumberField = new JTextField();
-        inputPanel.add(new JLabel("Introduceti id-ul intrebarii de sters:"), BorderLayout.NORTH);
+        inputPanel.add(new JLabel("Enter the question id to be deleted:"), BorderLayout.NORTH);
         inputPanel.add(deleteQuestionNumberField, BorderLayout.CENTER);
 
         deleteQuestionPanel.add(inputPanel, BorderLayout.SOUTH);
@@ -219,7 +215,7 @@ public class AdminMenu extends JFrame {
         int result = JOptionPane.showConfirmDialog(
                 AdminMenu.this,
                 deleteQuestionPanel,
-                "Sterge intrebare",
+                "Delete question",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE
         );
@@ -231,8 +227,8 @@ public class AdminMenu extends JFrame {
 
 
     /**
-     * Construieste o lista de intrebari pentru afisare
-     * @return Sirul de caractere reprezentand lista de intrebari.
+     * Build a list of questions to display
+     * @return The string representing the list of questions.
      */
     private String getQuestionList() {
         StringBuilder questionList = new StringBuilder();
@@ -252,15 +248,15 @@ public class AdminMenu extends JFrame {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(AdminMenu.this, "Eroare la conectarea la baza de date!");
+            JOptionPane.showMessageDialog(AdminMenu.this, "Error connecting to the database!");
         }
         return questionList.toString();
     }
 
 
     /**
-     * Sterge o intrebare dn baza de date.
-     * @param questionNumber ID-ul intrebarii de sters.
+     * Delete a question in the database.
+     * @param questionNumber Question ID to delete.
      */
     private void deleteQuestion(String questionNumber) {
         try {
@@ -272,20 +268,20 @@ public class AdminMenu extends JFrame {
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(AdminMenu.this, "Intrebare stearsa cu succes!");
+                    JOptionPane.showMessageDialog(AdminMenu.this, "Question successfully deleted!");
                 } else {
-                    JOptionPane.showMessageDialog(AdminMenu.this, "Eroare la stergerea intrebarii!");
+                    JOptionPane.showMessageDialog(AdminMenu.this, "Error deleting the question!");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(AdminMenu.this, "Eroare la conectarea la baza de date!");
+            JOptionPane.showMessageDialog(AdminMenu.this, "Error connecting to the database!");
         }
     }
 
 
     /**
-     * Incarca clasamentul utilizatorilor si il afiseaza.
+     * The method that loads the ranking of users and displays it.
      */
     private void loadRanking() {
         List<User> ranking = UserDao.getRanking();

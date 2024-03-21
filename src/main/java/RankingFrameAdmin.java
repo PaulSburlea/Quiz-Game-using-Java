@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Clasa RankingFrameAdmin reprezinta o fereastra care afiseaza clasamentul utilizatorilor pentru administrator,
- * oferind optiunea de a modifca scorurile utilizatorilor.
+ * Class RankingFrameAdmin is a window that displays the ranking of users for the administrator,
+ * offering the option to change user scores.
  */
 public class RankingFrameAdmin extends JFrame {
 
@@ -16,22 +16,22 @@ public class RankingFrameAdmin extends JFrame {
     private final JTable rankingTable;
 
     /**
-     * Constructorul clasei RankingFrameAdmin.
+     * RankingFrameAdmin class constructor.
      *
-     * @param ranking Lista de utilizatori pentru care se afiseaza clasamentul.
+     * @param ranking The list of users for which the ranking is displayed.
      */
     public RankingFrameAdmin(List<User> ranking) {
-        super("Clasament Admin");
+        super("Admin Leaderboard");
 
         rankingTableModel = new DefaultTableModel();
-        rankingTableModel.addColumn("Loc");
-        rankingTableModel.addColumn("Jucator");
-        rankingTableModel.addColumn("Scor");
+        rankingTableModel.addColumn("Place");
+        rankingTableModel.addColumn("Player");
+        rankingTableModel.addColumn("Score");
 
         rankingTable = new JTable(rankingTableModel);
         JScrollPane scrollPane = new JScrollPane(rankingTable);
 
-        JButton modifyButton = new JButton("Modifica scor");
+        JButton modifyButton = new JButton("Modify score");
         modifyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +55,7 @@ public class RankingFrameAdmin extends JFrame {
     }
 
     /**
-     * Afiseaza un dialog pentru modificarea scorului unui utilizator selectat.
+     * Displays a dialog for changing the score of a selected user.
      */
     private void showModifyScoreDialog() {
         int selectRow = rankingTable.getSelectedRow();
@@ -67,33 +67,33 @@ public class RankingFrameAdmin extends JFrame {
                 User selectedUser = UserDao.getUserByUsername(username);
 
                 if (selectedUser != null) {
-                    String newScore = JOptionPane.showInputDialog(this, "Introduceti noul scor pentru userul " + username, currentScore);
+                    String newScore = JOptionPane.showInputDialog(this, "Enter the new user score " + username, currentScore);
 
                     if (newScore != null && !newScore.isEmpty()) {
                         modifyUserScore(Integer.toString(selectedUser.getId()), newScore);
                         loadRanking(UserDao.getRanking());
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Utilizatorul nu a fost gasit în baza de date!");
+                    JOptionPane.showMessageDialog(this, "The user was not found in the database!");
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "ID utilizator invalid!");
+                JOptionPane.showMessageDialog(this, "Invalid user ID!");
             }
         }
     }
 
 
     /**
-     * Incarca clasamentul in tabel.
+     * Upload your ranking to the table.
      *
-     * @param ranking Lista de utilizatori pentru care se construieste clasamentul.
+     * @param ranking The list of users for whom the ranking is built.
      */
     private void loadRanking(List<User> ranking) {
         if (rankingTableModel == null) {
             rankingTableModel = new DefaultTableModel();
-            rankingTableModel.addColumn("Loc");
-            rankingTableModel.addColumn("Jucator");
-            rankingTableModel.addColumn("Scor");
+            rankingTableModel.addColumn("Place");
+            rankingTableModel.addColumn("Player");
+            rankingTableModel.addColumn("Score");
         }
 
         rankingTableModel.setRowCount(0);
@@ -106,10 +106,10 @@ public class RankingFrameAdmin extends JFrame {
 
 
     /**
-     * Modifica scorul unui utilizator in baza de date si reincarca clasamentul.
+     * Modifies a user's score in the database and reloads the ranking.
      *
-     * @param userId ID-ul utilizatorului pentru care se modifica scorul.
-     * @param newScore Noul scor al utlizatorului.
+     * @param userId the user ID for which the score is modified.
+     * @param newScore The new user score.
      */
     private void modifyUserScore(String userId, String newScore) {
         try {
@@ -118,7 +118,7 @@ public class RankingFrameAdmin extends JFrame {
 
 
             if (userIdInt <= 0 || newScoreInt < 0) {
-                JOptionPane.showMessageDialog(this, "ID utilizator sau scor incorect!");
+                JOptionPane.showMessageDialog(this, "User ID or incorrect score!");
                 return;
             }
 
@@ -126,11 +126,11 @@ public class RankingFrameAdmin extends JFrame {
 
             loadRanking(UserDao.getRanking());
 
-            JOptionPane.showMessageDialog(this, "Scorul utilizatorului a fost modificat cu succes!");
+            JOptionPane.showMessageDialog(this, "The user score has been successfully changed!");
         } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(this, "ID utilizator sau scor incorect!");
+            JOptionPane.showMessageDialog(this, "User ID or incorrect score!");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Eroare SQL la modificarea scorului utilizatorului: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "SQL error when changing user score: " + e.getMessage());
         }
     }
 

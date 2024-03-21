@@ -8,7 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 
 /**
- * Clasa LoginForm reprezinta fereastra de autentificre a utilizatorului.
+ * The LoginForm class initializes the user authentication window.
  */
 public class LoginForm extends JFrame {
 
@@ -18,9 +18,9 @@ public class LoginForm extends JFrame {
     private JPasswordField passwordField;
 
     /**
-     * Constructor pentru clasa LoginForm.
+     * Constructor for the LoginForm class.
      *
-     * @param user Utilizatorul curent.
+     * @param user Current user.
      */
     public LoginForm(User user) {
         this.currentUser = user;
@@ -28,21 +28,21 @@ public class LoginForm extends JFrame {
     }
 
     /**
-     * Constructor pentru clasa LoginForm.
+     * Constructor for the LoginForm class.
      */
     public LoginForm() {
-        super("Autentificare");
+        super("Log in");
         initialize();
     }
 
     /**
-     * Initializeaza interfata utilizatorului pentru fereastra de autentificare.
+     * Initialize the user interface for the authentication window.
      */
     private void initialize() {
         usernameField = new JTextField(20);
         passwordField = new JPasswordField(20);
 
-        JButton loginButton = new JButton("Autentificare");
+        JButton loginButton = new JButton("Log in");
         loginButton.addActionListener(new ActionListener() {
 
             private void openUserMenu(User user) {
@@ -64,7 +64,7 @@ public class LoginForm extends JFrame {
                     dispose();
                     openUserMenu(user);
                 } else {
-                    JOptionPane.showMessageDialog(LoginForm.this, "Username sau parola incorecte!");
+                    JOptionPane.showMessageDialog(LoginForm.this, "Incorrect username or password!");
                 }
             }
         });
@@ -80,7 +80,7 @@ public class LoginForm extends JFrame {
         gbc.gridy++;
         panel.add(usernameField, gbc);
         gbc.gridy++;
-        panel.add(new JLabel("Parola:"), gbc);
+        panel.add(new JLabel("Password:"), gbc);
         gbc.gridy++;
         panel.add(passwordField, gbc);
         gbc.gridy++;

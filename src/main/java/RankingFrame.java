@@ -3,17 +3,17 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * Clasa RankingFrame reprezinta o fereastra care afiseaza clasamentul utilizatorilor.
+ * The RankingFrame class is a window that displays the ranking of users.
  */
 public class RankingFrame extends JFrame {
 
     /**
-     * Constructorul clasei RankingFrame.
+     * RankingFrame class constructor.
      *
-     * @param ranking Lista de utilizatori pentru care se afiseaza clasamentul.
+     * @param ranking The list of users for whom the ranking is displayed.
      */
     public RankingFrame(List<User> ranking) {
-        super("Clasament");
+        super("Leaderboard");
 
         JTable table = createRankingTable(ranking);
         JScrollPane scrollPane = new JScrollPane(table);
@@ -28,13 +28,13 @@ public class RankingFrame extends JFrame {
     }
 
     /**
-     * Creeaza si returneaza un obiect JTable cu datele clasamentului.
+     * Creates and returns a JTable object with the ranking data.
      *
-     * @param ranking Lista de utilizatori pentru care se construieste clasamentul.
-     * @return Obiectul JTable care contine clasamentul.
+     * @param ranking The list of users for whom the ranking is built.
+     * @return The JTable item that contains the ranking.
      */
     private JTable createRankingTable(List<User> ranking) {
-        String[] columnName = {"Loc", "Jucator", "Scor"};
+        String[] columnName = {"Place", "Player", "Score"};
 
         Object[][] data = new Object[ranking.size()][3];
         for (int i=0; i<ranking.size(); i++) {

@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Clasa PasswordChange reprezinta o fereastra de dialog pentru schimbarea parolei utilizatorului curent.
+ * PasswordChange class initializes a dialog window for changing the current user password.
  */
 public class PasswordChange extends JDialog {
 
@@ -19,13 +19,13 @@ public class PasswordChange extends JDialog {
     private User currentUser;
 
     /**
-     * Constructorul clasei PasswordChange.
+     * PasswordChange class constructor.
      *
-     * @param parent Fereastra principala parinte.
-     * @param currentUser Utilizatorul curent pentru schimbarea parolei.
+     * @param parent Main window.
+     * @param currentUser Current user to change password.
      */
     public PasswordChange(JFrame parent, User currentUser) {
-        super(parent, "Schimba parola", true);
+        super(parent, "Change password", true);
         this.currentUser = currentUser;
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -39,19 +39,19 @@ public class PasswordChange extends JDialog {
         newPasswordField = new JPasswordField(20);
         confirmNewPasswordField = new JPasswordField(20);
 
-        panel.add(new JLabel("Parola curenta:"), gbc);
+        panel.add(new JLabel("Current password:"), gbc);
         gbc.gridy++;
         panel.add(currentPasswordField, gbc);
         gbc.gridy++;
-        panel.add(new JLabel("Parola noua:"), gbc);
+        panel.add(new JLabel("New password:"), gbc);
         gbc.gridy++;
         panel.add(newPasswordField, gbc);
         gbc.gridy++;
-        panel.add(new JLabel("Confirma parola noua:"), gbc);
+        panel.add(new JLabel("Confirm new password:"), gbc);
         gbc.gridy++;
         panel.add(confirmNewPasswordField, gbc);
 
-        JButton changePasswordButton = new JButton("Schimba parola");
+        JButton changePasswordButton = new JButton("Change password");
 
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
@@ -71,7 +71,7 @@ public class PasswordChange extends JDialog {
     }
 
     /**
-     * Metoda care verifica si schimba parola utilizatorului curent.
+     * Method that checks and changes the current user password.
      */
     private void changePassword() {
         String currentPassword = new String(currentPasswordField.getPassword());
@@ -81,20 +81,20 @@ public class PasswordChange extends JDialog {
         if (BCrypt.checkpw(currentPassword, currentUser.getPassword())) {
             if (newPassword.equals(confirmNewPassword)) {
                 updatePassword(newPassword);
-                JOptionPane.showMessageDialog(this, "Parola schimbata cu succes!");
+                JOptionPane.showMessageDialog(this, "Password changed successfully!");
                 setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(this, "Noile parole nu coincid!");
+                JOptionPane.showMessageDialog(this, "New passwords don't coincide!");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Parola curenta incorecta!");
+            JOptionPane.showMessageDialog(this, "Current password incorrect!");
         }
     }
 
     /**
-     * metoda care actualizeaza parola utilizatorului in baza de date.
+     * method that updates the user's password in the database.
      *
-     * @param newPassword Parola noua.
+     * @param newPassword New password.
      */
     private void updatePassword(String newPassword) {
     try(Connection connection = Database.getConnection()) {

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Clasa RegistrationForm reprezinta o fereastra de inregistrare a utilizatorului in sistem.
+ * The RegistrationForm class represents a user registration window in the system.
  */
 public class RegistrationForm extends JFrame {
 
@@ -13,16 +13,16 @@ public class RegistrationForm extends JFrame {
     private JTextField emailFied;
 
     /**
-     * Constructorul clasei RegistrationForm.
+     * The constructor of the RegistrationForm class.
      */
     public RegistrationForm() {
-        super("Inregistrare");
+        super("Registration");
 
         usernameField = new JTextField(20);
         passwordField = new JPasswordField(20);
         emailFied = new JTextField(20);
 
-        JButton registerButton = new JButton("Inregistrare");
+        JButton registerButton = new JButton("Registration");
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -31,7 +31,7 @@ public class RegistrationForm extends JFrame {
                 String email = emailFied.getText();
 
                 if (!email.toLowerCase().endsWith("@e-uvt.ro")) {
-                    JOptionPane.showMessageDialog(RegistrationForm.this, "Introduceti un email de forma @e-uvt.ro");
+                    JOptionPane.showMessageDialog(RegistrationForm.this, "Enter an email of the form @e-uvt.ro");
                     return;
                 }
 
@@ -49,14 +49,14 @@ public class RegistrationForm extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între elemente
-        gbc.anchor = GridBagConstraints.WEST; // Aliniere la stânga
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.anchor = GridBagConstraints.WEST;
 
         panel.add(new JLabel("Username:"), gbc);
         gbc.gridy++;
-        panel.add(new JLabel("Parola:"), gbc);
+        panel.add(new JLabel("Password:"), gbc);
         gbc.gridy++;
-        panel.add(new JLabel("Email"), gbc);
+        panel.add(new JLabel("E-mail"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;

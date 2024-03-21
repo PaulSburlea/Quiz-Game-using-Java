@@ -4,21 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Clasa WelcomePage reprezinta fereastra de bun venit cu optinile de inregistrare si autentificare.
+ * WelcomePage Class initializes the welcome window with the registration and authentication options.
  */
 public class WelcomePage extends JFrame {
 
     /**
-     * Constructorul clasei WelcomePage.
+     * WelcomePage class contructor.
      */
     public WelcomePage() {
-        super("Bine ati venit!");
+        super("Welcome");
 
-        JLabel titleLabel = new JLabel("Alegeti una dintre optiunile de conectare:\n");
+        JLabel titleLabel = new JLabel("Choose one of the connection options:\n");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        JButton registerButton = new JButton("Inregistrare");
-        JButton loginButton = new JButton("Autentificare");
+        JButton registerButton = new JButton("Register");
+        JButton loginButton = new JButton("Log in");
 
         int maxButtonWidth = 200;
 
@@ -45,10 +45,9 @@ public class WelcomePage extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10); // Adăugăm o margine între butoane
-        gbc.fill = GridBagConstraints.BOTH; // Asigurăm că butoanele se extind pe ambele axe
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.BOTH;
 
-        // Adăugăm butoanele în panou
         buttonPanel.add(titleLabel, gbc);
         gbc.gridy++;
         buttonPanel.add(registerButton, gbc);

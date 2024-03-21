@@ -7,16 +7,16 @@ import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
- * Clasa UserDao furnizeaza metode pentru interactiunea cu baza de date referitoare la obiectele de tip User.
+ * The UserDao class provides methods for interacting with the database regarding User objects.
  */
 public class UserDao {
 
     protected static final int LOG_ROUNDS = 12;
 
     /**
-     * Metoda pentru crearea unui nou utilizator in baza de date.
+     * Method for creating a new user in the database.
      *
-     * @param user Utilizatorul care trebuie creat.
+     * @param user The user to be created.
      */
     public void createUser(User user) {
         try (Connection connection = Database.getConnection()) {
@@ -36,10 +36,10 @@ public class UserDao {
     }
 
     /**
-     * Metoda pentru obtinerea unui utilizator dupa numele de utilizator.
+     * Method for obtaining a user by username.
      *
-     * @param username Numele de utilizator al utilizatorului cautat.
-     * @return Utilizatorul gasit sau null daca nu exista.
+     * @param username The user name of the user sought.
+     * @return User found or null if not exist.
      */
     public static User getUserByUsername(String username) {
         try (Connection connection = Database.getConnection()) {
@@ -66,11 +66,11 @@ public class UserDao {
     }
 
     /**
-     * Metoda pentru actualizarea scorului utilizatorului.
+     * Method for updating user score.
      *
-     * @param userId ID-ul utilizatorului ale carui scor trebuie actualizat.
-     * @param scoreToAdd Scorul care trebuie adaugat la scorul existent al utilizatorului.
-     * @throws SQLException Exceptie care poate aparea in cazul unor erori SQL.
+     * @param userId user ID whose score needs to be updated.
+     * @param scoreToAdd Score to be added to the existing user score.
+     * @throws SQLException Exception that may occur in case of SQL errors.
      */
     public static void updateScore(int userId, int scoreToAdd) throws SQLException {
         try (Connection connection = Database.getConnection()) {
@@ -81,12 +81,12 @@ public class UserDao {
     }
 
     /**
-     * Metoda pentru obtinerea scorului curent al utilizatorului.
+     * Method for obtaining the current user score.
      *
-     * @param userId ID-ul utilizatorului ale carui scor trebuie obtinut.
-     * @param connection Obiectul de conexiune la baza de date.
-     * @return Scorul curent al utilizatorului.
-     * @throws SQLException Exceptie care poate aparea in cazul unor erori SQL.
+     * @param userId user ID whose score must be obtained.
+     * @param connection The object of connection to the database.
+     * @return User's current score.
+     * @throws SQLException Exception that may occur in case of SQL errors.
      */
     private static int getCurrentScore(int userId, Connection connection) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement("SELECT score FROM user WHERE id = ?")) {
@@ -102,12 +102,12 @@ public class UserDao {
     }
 
     /**
-     * Metoda pentru actualizarea scorului in baza de date.
+     * Method for updating the score in the database.
      *
-     * @param userId  ID-ul utilizatorului ale carui scor trebuie actualizat.
-     * @param newScore Noul scor al utilizatorului.
-     * @param connection Obiectul de conexiune la baza de date.
-     * @throws SQLException Exceptie care poate aparea in cazul unor erori SQL.
+     * @param userId user ID whose score needs to be updated.
+     * @param newScore New user score.
+     * @param connection The object of connection to the database.
+     * @throws SQLException Exception that may occur in case of SQL errors.
      */
     private static void updateScoreInDatabase(int userId, int newScore, Connection connection) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement("UPDATE user SET score = ? WHERE id = ?")) {
@@ -118,9 +118,9 @@ public class UserDao {
     }
 
     /**
-     * Metoda pentru obtinerea clasamentului utiliaztorilor.
+     * Method for obtaining the ranking of users.
      *
-     * @return Lista de utilizatori ordonata dupa scor in ordine descrescatoare.
+     * @return List of users ordered by score in descending order.
      */
     public static List<User> getRanking() {
         List<User> ranking = new ArrayList<>();
@@ -149,11 +149,11 @@ public class UserDao {
 
 
     /**
-     * Metoda pentru setarea unui nou scor pentru un utilizator.
+     * Method for setting a new score for a user.
      *
-     * @param userId ID-ul utilizatorului caruia i se seteaza scorul.
-     * @param newScore Noul scor al utilizatorului.
-     * @throws SQLException Exceptie care poate aparea in cazul unor erori SQL.
+     * @param userId the user ID to which the score is set.
+     * @param newScore New user score.
+     * @throws SQLException Exception that may occur in case of SQL errors.
      */
     public static void setScore(int userId, int newScore) throws SQLException {
         try (Connection connection = Database.getConnection()) {

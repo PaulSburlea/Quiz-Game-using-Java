@@ -1,5 +1,5 @@
 /**
- * Clasa User reprezinta o entitate care contine informatii despre un utilizator in cadrul sistemului.
+ * The User class is an entity that contains information about a user within the system.
  */
 public class User {
 
@@ -10,18 +10,16 @@ public class User {
     private boolean isAdmin;
     private int score;
 
-    /**
-     * Constructor implicit al clasei User.
-     */
+
     public User() {}
 
     /**
-     * Constructor cu parametii al clasei User pentru un utilizator cu drepturi de administrator.
+     * Admin User constructor
      *
-     * @param username Numele de utilizator al utiliaztorului,
-     * @param password Parola utilizatorului.
-     * @param email Adresa de email al utilizatorului.
-     * @param isAdmin Indicator pentru drepturile de administrator ale utilizatorului.
+     * @param username Username of the utility, the,
+     * @param password User password.
+     * @param email User's email address.
+     * @param isAdmin Indicator for user administrator rights.
      */
     public User(String username, String password, String email, boolean isAdmin) {
         this.username = username;
@@ -31,11 +29,11 @@ public class User {
     }
 
     /**
-     * Constructor cu parametri al clasei User pentru un utilizator fara drepturi de administrator.
+     * User constructor
      *
-     * @param username Numele de utilizator al utiliaztorului,
-     * @param password Parola utilizatorului.
-     * @param email Adresa de email al utilizatorului.
+     * @param username Username of the utility, the,
+     * @param password User password.
+     * @param email User's email address.
      */
     public User(String username, String password, String email) {
         this.username = username;
